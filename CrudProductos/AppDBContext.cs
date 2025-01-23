@@ -12,10 +12,11 @@ namespace CrudProductos
         {
         }
 
-        public DbSet<Producto> Productos { get; set; }
+        public DbSet<Producto> Producto { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Venta> Venta { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
+       
 
     }
     public class Producto

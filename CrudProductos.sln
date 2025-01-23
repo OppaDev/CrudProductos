@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudProductos", "CrudProductos\CrudProductos.csproj", "{8C6FC904-4401-45DE-A7BE-5670A3BEE8C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudProductosTest", "CrudProductosTest\CrudProductosTest.csproj", "{067DF90A-CD48-4BA1-85DE-5A0A3F6C19E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudTest", "CrudTest\CrudTest.csproj", "{DF092D0F-DD4F-485A-875F-AB0957E01C73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{8C6FC904-4401-45DE-A7BE-5670A3BEE8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C6FC904-4401-45DE-A7BE-5670A3BEE8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C6FC904-4401-45DE-A7BE-5670A3BEE8C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{067DF90A-CD48-4BA1-85DE-5A0A3F6C19E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{067DF90A-CD48-4BA1-85DE-5A0A3F6C19E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{067DF90A-CD48-4BA1-85DE-5A0A3F6C19E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{067DF90A-CD48-4BA1-85DE-5A0A3F6C19E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF092D0F-DD4F-485A-875F-AB0957E01C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF092D0F-DD4F-485A-875F-AB0957E01C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF092D0F-DD4F-485A-875F-AB0957E01C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF092D0F-DD4F-485A-875F-AB0957E01C73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
