@@ -16,7 +16,7 @@ namespace CrudProductos.Controllers
         private async Task<IActionResult?> ValidarCategoria(Categoria categoria)
         {
             //validar categoria con el mismo nombre
-            var categoriaExistente = await _dbContext.Categorias.AnyAsync
+            var categoriaExistente = await _dbContext.Categoria.AnyAsync
             (c => c.Nombre == categoria.Nombre);
             if (categoriaExistente)
             {
@@ -38,7 +38,7 @@ namespace CrudProductos.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategorias()
         {
-            return Ok(await _dbContext.Categorias.ToListAsync());
+            return Ok(await _dbContext.Categoria.ToListAsync());
         }
         //create Categoria
         [HttpPost]
@@ -49,7 +49,7 @@ namespace CrudProductos.Controllers
             {
                 return error;
             }
-            await _dbContext.Categorias.AddAsync(categoria);
+            await _dbContext.Categoria.AddAsync(categoria);
             await _dbContext.SaveChangesAsync();
             return Ok(categoria);
         }
@@ -62,7 +62,7 @@ namespace CrudProductos.Controllers
             {
                 return error;
             }
-            _dbContext.Categorias.Update(categoria);
+            _dbContext.Categoria.Update(categoria);
             await _dbContext.SaveChangesAsync();
             return Ok(categoria);
         }
@@ -70,14 +70,21 @@ namespace CrudProductos.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategoria(int id)
         {
-            var categoria = await _dbContext.Categorias.FindAsync(id);
+            var categoria = await _dbContext.Categoria.FirstOrDefaultAsync(c => c.IdCategoria == id);
             if (categoria == null)
             {
                 return NotFound();
             }
-            _dbContext.Categorias.Remove(categoria);
+            //validar si tiene productos asignados
+            var productosAsignados = await _dbContext.Producto.AnyAsync
+                (p => p.CategoriaId == categoria.IdCategoria);
+            if (productosAsignados)
+            {
+                return BadRequest("La categoria tiene productos asignados");
+            }
+            _dbContext.Categoria.Remove(categoria);
             await _dbContext.SaveChangesAsync();
-            return Ok();
+            return Ok(categoria);
         }
     }
 }

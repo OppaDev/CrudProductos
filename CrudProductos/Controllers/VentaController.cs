@@ -15,13 +15,6 @@ namespace CrudProductos.Controllers
         //Validaciones
         private async Task<IActionResult?> ValidarVenta(Venta venta)
         {
-            //validar venta con el mismo producto
-            var ventaExistente = await _dbContext.Venta.AnyAsync
-            (v => v.ProductoId == venta.ProductoId);
-            if (ventaExistente)
-            {
-                return BadRequest("La venta ya existe");
-            }
             //validar no sea venta nula
             if (venta == null)
             {
@@ -35,7 +28,7 @@ namespace CrudProductos.Controllers
             //validar si un producto existe
             var productoExistente = await _dbContext.Producto.AnyAsync
             (p => p.IdProducto == venta.ProductoId);
-            if (productoExistente)
+            if (!productoExistente)
             {
                 return BadRequest("El producto no existe");
             }

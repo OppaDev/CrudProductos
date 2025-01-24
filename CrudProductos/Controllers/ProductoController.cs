@@ -15,6 +15,13 @@ namespace CrudProductos.Controllers
         //Validaciones
         private async Task<IActionResult?> ValidarProducto(Producto producto)
         {
+            //validar si una categoria existe
+            var categoriaExistente = await _dbContext.Categoria.AnyAsync
+            (c => c.IdCategoria == producto.CategoriaId);
+            if (!categoriaExistente)
+            {
+                return BadRequest("La categoria no existe");
+            }
             //validar producto con el mismo nombre
             var productoExistente = await _dbContext.Producto.AnyAsync
             (p => p.Nombre == producto.Nombre);
@@ -32,12 +39,10 @@ namespace CrudProductos.Controllers
             {
                 return BadRequest("El nombre no puede ser vacio");
             }
-            //validar si una categoria existe
-            var categoriaExistente = await _dbContext.Categorias.AnyAsync
-            (c => c.IdCategoria == producto.CategoriaId);
-            if (categoriaExistente)
+            //validar precio positivo
+            if (producto.Precio <= 0)
             {
-                return BadRequest("La categoria no existe");
+                return BadRequest("El precio debe ser positivo");
             }
             return null;
         }
@@ -83,9 +88,9 @@ namespace CrudProductos.Controllers
                 return NotFound();
             }
             //validar si tiene una categoria asignada
-            var categoriaExistente = await _dbContext.Categorias.FirstOrDefaultAsync
+            var categoriaExistente = await _dbContext.Categoria.AnyAsync
             (c => c.IdCategoria == producto.CategoriaId);
-            if (categoriaExistente == null)
+            if (categoriaExistente)
             {
                 return BadRequest("Tiene una categoria asignada");
             }
